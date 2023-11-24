@@ -1,3 +1,5 @@
+# Loading and analyzing the Youtube Channel data
+This project runs a code to load 1000 out of 4000 records of Youtube Chanel data, display it on Python and connect it to MySQL database and display the 1000 records on MYSQL database as well. 
 
 # Data Loading
 
