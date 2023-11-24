@@ -128,6 +128,7 @@ Following these steps we are successfully able to load the CSV file in a databas
 
 ## Deployment
 There was no real-time deployment of this project. This project was a test to run a code for school. 
+![Alt Text](Github2.png)
 
 ## Contributing
 
