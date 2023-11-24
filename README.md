@@ -135,7 +135,7 @@ There was no real-time deployment of this project. This project was a test to ru
 Contributions are always welcome! 
 
 The following members contributed to this project:
-ramidkc (https://www.github.com/ramidkc)
+[ramidkc](https://www.github.com/ramidkc)
 jillshah
 niteshtalukdar
 
@@ -158,7 +158,7 @@ License to use by Durham College
 
 Prof. Omar Altrad
 
-Rami D KC (https://www.github.com/ramidkc)
+[ramidkc](https://www.github.com/ramidkc)
 
 Jill Shah
 
