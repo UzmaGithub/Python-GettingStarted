@@ -17,6 +17,14 @@ Create a new userid and password in MySQL.
 
 ## Installing
 We use Jupiter notebook from the Anaconda package to work with Python. Post that we will install the required Python libraries to interact with MYSQL database and execute SQL queries. Then we will import the necessary libraries including Pandas, which is used to convert tables into dataframe and perform various operations. We will also import pymysql, to interact with MYSQL database.
+```
+#### Installing
+Install the required packages
+
+pip install sqlalchemy
+
+pip install pymysql
+```
 ## Running the tests
 First we read the youtube_dataset csv file by creating a dataframe in pandas. 
 
@@ -29,6 +37,16 @@ results_table is used to return the output of the dataframe.
 Then top_1000 and df.iloc are used, and we select rows from position 0 (inclusive) to 1000 (exclusive), which means selecting the first 1000 rows of the total 4000 rows of the DataFrame.
 
 Lastly the create_engine function is used, to create a database engine, which will establish a connection to the specified MySQL database.
+```
+#Reading csv file 
+df = pd.read_csv("youtube_dataset.csv", encoding='latin-1')
+```
+
+```
+#Understanding the dataframe
+df.info()
+```
+
 
 ## Breakdown of end to end steps
 
@@ -38,9 +56,34 @@ Post that we display all the information related to the dataframe, using df.info
 
 The output of the df.info() function will display the Columns, Column number, the data types (integer, object etc.) and if the Columns have any values; it will also display if any Column has a null value. The memory usage of the dataframe is displayed as well.
 
+```
+#understanding the shape of the dataframe 
+total_rows, total_columns = df.shape
+print(f'Total Rows: {total_rows}, Total Columns: {total_columns}')
+
+```
 Then we input a command to display the number of rows and columns, which essentially shows the shape of the dataframe.
 
 Df.head() is used to display the top five rows of the dataframe.
+```
+#creating function name channeltype  
+def channeltype(data):
+    #getting first 1000 records uisng iloc
+    top_1000 = data.iloc[0:1000]
+    # Getting  the distribution of 'channeltype' values
+    distribution = top_1000['channeltype'].value_counts( )
+    # Getting the percentage of each 'channeltype' in the top 1000 records
+    percentage= distribution / len(top_1000) * 100
+    # Create a DataFrame with 'channeltype', 'Count', and 'Percentage' columns
+    result_table = pd.DataFrame({
+        'channeltype': distribution.index,
+        'Count': distribution.values,
+        'Percentage': percentage.values
+    })
+
+    # Return the DataFrame
+    return result_table 
+```
 
 #### Calculating the distribution of Channel type
 To calculate the distribution of channel type, a function channeltype() is used. This function takes ‘data’ as an argument. Then iloc method is used to select the first 1000 records from the dataframe.
@@ -50,7 +93,12 @@ iloc in Python stands for "integer location" and is a method for selecting data 
 result_table returns the created DataFrame as the output of the function. When you call this function with a DataFrame, it will return a summary table showing the distribution of 'channeltype' values, their counts, and percentages within the first 1000 records of the input data.
 
 dis displays the values of the top 1000 rows of the dataframe.
-
+#viewing the  distribution of 'channeltype' values in the top 1000 rows of the DataFrame
+dis
+```
+#Calling the 'channeltype' function with the DataFrame 'df'
+dis = channeltype(df)
+```
 #### Loading top 1000 records into a separate CSV file, and to a database table
 By using top_1000 and df.iloc, we selected rows from position 0 (inclusive) to 1000 (exclusive), which means selecting the first 1000 rows of the total 4000 rows of the DataFrame.
 
@@ -69,11 +117,18 @@ We created a connection URL that specifies the database type, username, password
 •	'localho***' is the database host (can be an IP address or a domain name
 •	'assig***' is the name of the database you want to connect with
 •	Then we establish a connection to the database by calling the database con=engine
+```
+#Create the engine with the MySQL dialect and the appropriate connection details
+engine = create_engine('mysql+pymysql://group10:assig****@localhost/assign****')
+```
+# Assuming 'your_dataframe' is the DataFrame you want to save
+top_1000.to_sql('top_1000_youtube_channels', con=engine, if_exists='replace', index=False)
 
 Following these steps we are successfully able to load the CSV file in a database created on the MySQL server. 
 
 ## Deployment
 There was no real-time deployment of this project. This project was a test to run a code for school. 
+
 ## Contributing
 
 Contributions are always welcome! 
