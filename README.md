@@ -151,7 +151,7 @@ Please adhere to this project's `code of conduct`.
 Professor Omar Altrad
 ## License
 
-License to use by Durham College
+[LICENSE.md](License.md)
 
 
 ## Acknowledgements
