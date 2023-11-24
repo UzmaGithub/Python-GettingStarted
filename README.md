@@ -47,6 +47,7 @@ df = pd.read_csv("youtube_dataset.csv", encoding='latin-1')
 df.info()
 ```
 
+![Alt Text](Github.png)
 
 ## Breakdown of end to end steps
 
